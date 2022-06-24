@@ -1,0 +1,68 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: ncp_mg21_32Con_402
+label: ncp_mg21_32Con_402
+description: |
+  Network Co-Processor (NCP) target application. Runs the Bluetooth stack and provides access to it by exposing the Bluetooth API (BGAPI) via UART connection. NCP mode makes it possible to run your application on a host controller or PC. This example does not have a GATT database, but makes it possible to build one from the application using Dynamic GATT API.
+category: Bluetooth Examples
+package: Bluetooth
+quality: production
+readme:
+- {path: readme.md}
+source:
+- {path: main.c}
+- {path: app.c}
+tag: [prebuilt_demo, 'hardware:rf:band:2400']
+include:
+- path: ''
+  file_list:
+  - {path: app.h}
+sdk: {id: gecko_sdk, version: 4.0.2}
+toolchain_settings: []
+component:
+- {id: bluetooth_feature_nvm}
+- {id: bluetooth_feature_test}
+- {id: bluetooth_feature_sync}
+- instance: [vcom]
+  id: uartdrv_usart
+- {id: bluetooth_feature_dfu}
+- {id: EFR32MG21A020F1024IM32}
+- {id: sl_system}
+- {id: bluetooth_feature_connection}
+- {id: bluetooth_feature_gatt_server}
+- {id: bluetooth_feature_advertiser}
+- {id: bluetooth_feature_sm}
+- {id: bluetooth_feature_periodic_adv}
+- {id: bluetooth_feature_gap}
+- {id: mpu}
+- {id: bluetooth_feature_dynamic_gattdb}
+- {id: bluetooth_feature_system}
+- {id: bluetooth_feature_scanner}
+- {id: bluetooth_stack}
+- {id: ncp}
+- {id: device_init}
+- {id: bootloader_interface}
+- {id: rail_util_pti}
+- {id: bluetooth_feature_gatt}
+other_file:
+- {path: create_bl_files.bat}
+- {path: create_bl_files.sh}
+- {path: readme_img0.png}
+- {path: readme_img1.png}
+- {path: readme_img2.png}
+- {path: readme_img3.png}
+- {path: readme_img4.png}
+- {path: readme_img5.png}
+- {path: readme_img7.png}
+configuration:
+- {name: SL_STACK_SIZE, value: '2752'}
+- {name: SL_HEAP_SIZE, value: '10000'}
+- {name: SL_BT_CONFIG_USER_ADVERTISERS, value: '4'}
+- {name: SL_BOARD_ENABLE_VCOM, value: '1'}
+- {name: SL_UARTDRV_USART_VCOM_FLOW_CONTROL_TYPE, value: uartdrvFlowControlHw}
+- condition: [psa_crypto]
+  name: SL_PSA_KEY_USER_SLOT_COUNT
+  value: '0'
+ui_hints:
+  highlight:
+  - {path: readme.md, focus: true}
+
